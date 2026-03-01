@@ -1,33 +1,74 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from "./Header";
-// import { checkValidate } from "../utils/validate";
 import { checkValidate } from "../utils/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase";
 
 const Login = () => {
   const [isSignin, setIsSignin] = useState(true);
-  const [message, setMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
-  const name = useRef("");
-  const email = useRef("");
-  const password = useRef("");
+  const name = useRef(null);
+  const email = useRef(null);
+  const password = useRef(null);
 
   const handleSubmitForm = () => {
     let validateMessage = null;
 
     if (isSignin) {
+      // ------------------------------------------------ Sign In Functionality ----------
       validateMessage = checkValidate(
         null,
         email.current.value,
         password.current.value,
       );
+      setErrorMessage(validateMessage);
+      if (validateMessage) return;
+
+      signInWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
+        .then((userCredential) => {
+          // Signed in
+          const user = userCredential.user;
+          console.log("SignIn", user);
+          // ...
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "--" + errorMessage);
+        });
     } else {
+      // ------------------------------------------------ Sign Up Functionality ----------
       validateMessage = checkValidate(
         name.current.value,
         email.current.value,
         password.current.value,
       );
+      setErrorMessage(validateMessage);
+      if (validateMessage) return;
+
+      createUserWithEmailAndPassword(
+        auth,
+        email.current.value,
+        password.current.value,
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+          console.log(user);
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          setErrorMessage(errorCode + "---" + errorMessage);
+        });
     }
-    setMessage(validateMessage);
   };
 
   const handleToggleSignin = () => {
@@ -68,7 +109,7 @@ const Login = () => {
           className="p-2 rounded-sm bg-gray-700"
         />
         <span className="text-red-600 text-sm text-center font-bold">
-          {message && message}
+          {errorMessage && errorMessage}
         </span>
         <button
           onClick={handleSubmitForm}

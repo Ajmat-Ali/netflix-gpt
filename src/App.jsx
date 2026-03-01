@@ -1,8 +1,12 @@
 import { Home } from "./pages/Home";
+import { Provider } from "react-redux";
+import appStore from "./redux/appStore";
 function App() {
   return (
     <>
-      <Home />
+      <Provider store={appStore}>
+        <Home />
+      </Provider>
     </>
   );
 }

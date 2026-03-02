@@ -4,12 +4,18 @@ import { checkValidate } from "../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase";
+import { useDispatch } from "react-redux";
+import { addUser } from "../redux/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [isSignin, setIsSignin] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -34,10 +40,10 @@ const Login = () => {
         password.current.value,
       )
         .then((userCredential) => {
-          // Signed in
           const user = userCredential.user;
-          console.log("SignIn", user);
-          // ...
+          // console.log(user);
+          // console.log(auth.currentUser);
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -45,7 +51,7 @@ const Login = () => {
           setErrorMessage(errorCode + "--" + errorMessage);
         });
     } else {
-      // ------------------------------------------------ Sign Up Functionality ----------
+      // ------------------------------------------------ Sign Up Functionality ----------------------
       validateMessage = checkValidate(
         name.current.value,
         email.current.value,
@@ -59,9 +65,17 @@ const Login = () => {
         email.current.value,
         password.current.value,
       )
-        .then((userCredential) => {
-          const user = userCredential.user;
-          console.log(user);
+        .then(() => {
+          return updateProfile(auth.currentUser, {
+            displayName: name.current.value,
+            photoURL: "https://placehold.net/avatar.png",
+          });
+        })
+        .then(() => {
+          const { displayName, email, uid, photoURL, phoneNumber } =
+            auth.currentUser;
+          dispatch(addUser({ displayName, email, uid, phoneNumber, photoURL }));
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;

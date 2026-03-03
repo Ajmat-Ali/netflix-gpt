@@ -9,6 +9,9 @@
 - setup redux store with userSlice and update useSlice
 - Update Profile with displayName & profileUrl
 - signout logic and redirect to login page
+- protect Route if user not logged in redirect to Login - vice versa
+- unsubscribe to the the onAuthStateChanged callback
+- add hardcode value to contant file
 
 ### Upcoming Feature:-
 

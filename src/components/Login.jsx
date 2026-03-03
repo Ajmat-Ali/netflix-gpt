@@ -9,13 +9,12 @@ import {
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../redux/authSlice";
-import { useNavigate } from "react-router-dom";
+import { NETFLIX_BANNER } from "../utils/constant";
 
 const Login = () => {
   const [isSignin, setIsSignin] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const name = useRef(null);
   const email = useRef(null);
@@ -41,9 +40,6 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          // console.log(user);
-          // console.log(auth.currentUser);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -75,7 +71,6 @@ const Login = () => {
           const { displayName, email, uid, photoURL, phoneNumber } =
             auth.currentUser;
           dispatch(addUser({ displayName, email, uid, phoneNumber, photoURL }));
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -92,7 +87,7 @@ const Login = () => {
     <div>
       <Header />
       <img
-        src="https://assets.nflxext.com/ffe/siteui/vlv3/5eb03855-b753-4788-b9b3-0cc29e3d2891/web/IN-en-20260223-TRIFECTA-perspective_7bcba0fc-d5a5-42f6-b4ed-2ca56a458c61_large.jpg"
+        src={NETFLIX_BANNER}
         alt="Background Image"
         className="w-12/12 absolute"
       />{" "}

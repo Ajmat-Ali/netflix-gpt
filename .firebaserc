@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "netflix-gpt-3707d"
-  }
+  },
+  "targets": {
+    "netflix-gpt-3707d": {
+      "hosting": {
+        "netflixgpt": [
+          "netflix-gpt-v2-564db"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }

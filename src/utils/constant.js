@@ -3,3 +3,14 @@ export const NETFLIX_LOGO =
 
 export const NETFLIX_BANNER =
   "https://assets.nflxext.com/ffe/siteui/vlv3/5eb03855-b753-4788-b9b3-0cc29e3d2891/web/IN-en-20260223-TRIFECTA-perspective_7bcba0fc-d5a5-42f6-b4ed-2ca56a458c61_large.jpg";
+
+export const NOW_PLAYING_MOVIES_URL =
+  "https://api.themoviedb.org/3/movie/now_playing";
+export const API_OPTIONS = {
+  method: "GET",
+  headers: {
+    accept: "application/json",
+    Authorization:
+      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZDdlNjM1MjRkNmRjOTUyOTQzNjFjYzJkY2QwNjk4OCIsIm5iZiI6MTcwOTgxNjkyNC42NjIwMDAyLCJzdWIiOiI2NWU5YmM1YzMzOTZiOTAxNjI4M2IwYmYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.GwTLSsvy4FDUVBdPRyi58UNdmJRNmVqvH31pDKtkw9U",
+  },
+};

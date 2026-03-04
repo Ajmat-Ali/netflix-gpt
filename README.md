@@ -13,6 +13,10 @@
 - unsubscribe to the the onAuthStateChanged callback
 - add hardcode value to contant file
 
+- Register on TMDB API and get API key, Access token
+- make API call and get playing movies data
+- Get Movie Trailer
+
 ### Upcoming Feature:-
 
 > I have to Show and hide Message on Toggle Sign In / Sign Up

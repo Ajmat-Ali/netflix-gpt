@@ -85,7 +85,9 @@ const Login = () => {
   };
   return (
     <div>
-      <Header />
+      <div className="absolute z-10">
+        <Header />
+      </div>
       <img
         src={NETFLIX_BANNER}
         alt="Background Image"

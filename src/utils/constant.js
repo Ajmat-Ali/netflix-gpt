@@ -6,6 +6,7 @@ export const NETFLIX_BANNER =
 
 export const NOW_PLAYING_MOVIES_URL =
   "https://api.themoviedb.org/3/movie/now_playing";
+
 export const API_OPTIONS = {
   method: "GET",
   headers: {
@@ -14,3 +15,5 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI5ZDdlNjM1MjRkNmRjOTUyOTQzNjFjYzJkY2QwNjk4OCIsIm5iZiI6MTcwOTgxNjkyNC42NjIwMDAyLCJzdWIiOiI2NWU5YmM1YzMzOTZiOTAxNjI4M2IwYmYiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.GwTLSsvy4FDUVBdPRyi58UNdmJRNmVqvH31pDKtkw9U",
   },
 };
+
+export const POSTER_BASE_PATH = "https://image.tmdb.org/t/p/w500/";

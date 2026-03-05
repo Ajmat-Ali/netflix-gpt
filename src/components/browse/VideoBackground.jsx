@@ -1,45 +1,25 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { API_OPTIONS } from "../../utils/constant";
-import { addTrailer } from "../../redux/movieSlice";
+import { useSelector } from "react-redux";
+
+import useGetTrailer from "../../hooks/useGetTrailer";
 
 const VideoBackground = ({ id }) => {
-  const dispatch = useDispatch();
   const movieTrailer = useSelector((store) => store.movie.trailer);
 
-  const fetchTrailer = async () => {
-    try {
-      const data = await fetch(
-        `https://api.themoviedb.org/3/movie/${id}/videos`,
-        API_OPTIONS,
-      );
-      const json = await data.json();
-      const filteredData = json.results.filter(
-        (video) => video.type === "Trailer",
-      );
-      const trailer = filteredData[0];
-      dispatch(addTrailer(trailer));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  useGetTrailer(id);
 
-  useEffect(() => {
-    fetchTrailer();
-  }, []);
   if (!movieTrailer) return;
 
   return (
-    <div>
+    <div className="aspect-video overflow-hidden border border-5">
       <iframe
-        width="560"
-        height="315"
-        src={`https://www.youtube.com/embed/${movieTrailer.key}?si=t8_dkTTkqnZNaaLL`}
+        className="w-screen h-full  w-full h-full scale-[1.5]"
+        // src={`https://www.youtube.com/embed/${movieTrailer?.key}?si=t8_dkTTkqnZNaaLL&autoplay=1&loop=1&play&showinfo=0&controls=0&autohid=1`}
+        src={`https://www.youtube.com/embed/${movieTrailer?.key}?autoplay=1&loop=1&playlist=${movieTrailer?.key}&controls=0&showinfo=0&modestbranding=1&rel=0&mute=1`}
         title="YouTube video player"
-        // frameborder="0"
-        // allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         referrerPolicy="strict-origin-when-cross-origin"
-        // allowfullscreen
+        allowFullScreen
       ></iframe>
     </div>
   );

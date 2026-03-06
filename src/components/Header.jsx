@@ -6,9 +6,13 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { useEffect } from "react";
 import { NETFLIX_LOGO } from "../utils/constant";
+import { toggleSearch } from "../redux/gptSlice";
+import { selectLang } from "../utils/language";
+import { toggleLanguage } from "../redux/languageSlice";
 
 const Header = () => {
   const authData = useSelector((store) => store.auth);
+  const toggleSearchValue = useSelector((store) => store.gpt.toggleSearchValue);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,6 +38,14 @@ const Header = () => {
     return () => unSubscribe();
   }, []);
 
+  const handleToggleGptSearch = () => {
+    dispatch(toggleSearch());
+  };
+
+  const handleChangeLanguage = (e) => {
+    dispatch(toggleLanguage(e.target.value));
+  };
+
   return (
     <div className=" bg-gradient-to-b from-black w-full flex justify-between">
       <img
@@ -43,6 +55,27 @@ const Header = () => {
       />
       {authData && (
         <div className="flex p-4 text-white gap-x-10 items-center">
+          <div>
+            {toggleSearchValue && (
+              <select
+                onChange={handleChangeLanguage}
+                className="bg-black/50 py-2 px-4 rounded-lg cursor-pointer border"
+              >
+                {selectLang.map((lang) => (
+                  <option key={lang.text} value={lang.value}>
+                    {lang.text}
+                  </option>
+                ))}
+              </select>
+            )}
+          </div>
+          <button
+            onClick={handleToggleGptSearch}
+            className="text-white bg-purple-500 py-2 px-4 rounded-lg cursor-pointer"
+          >
+            {!toggleSearchValue ? "GPT Search" : "Home Page"}
+          </button>
+
           <img
             src={authData?.photoURL}
             alt={authData?.displayName}

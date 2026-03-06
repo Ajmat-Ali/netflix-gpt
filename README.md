@@ -16,10 +16,12 @@
 - make API call and get playing movies data
 - Get Movie Trailer
 - display Trailer on Sign In/Sign Up
-
-# Upcoming Features
-
 - Build Secondary Component
 - Create Movie list
 - Create Movie Cart
 - TMDB CDN url for image (secondary conatiner)
+- create GPT Page
+- make multi language
+- My API Limit exceed
+
+# Upcoming Features

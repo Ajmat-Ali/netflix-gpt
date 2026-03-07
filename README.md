@@ -23,5 +23,8 @@
 - create GPT Page
 - make multi language
 - My API Limit exceed
+- search movies by search box
+- use debounce function to search
+- dispay searched movies
 
 # Upcoming Features

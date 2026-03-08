@@ -8,7 +8,7 @@ const MoveiCart = ({ movie }) => {
   const { poster_path } = movie;
   if (!poster_path) return;
   return (
-    <div className="w-45 cursor-pointer">
+    <div className="w-45 cursor-pointer max-sm:w-30">
       <img
         className="w-full- h-full"
         src={POSTER_BASE_PATH + poster_path}

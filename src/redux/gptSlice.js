@@ -4,9 +4,9 @@ const gptSlice = createSlice({
   name: "gpt",
   initialState: {
     toggleSearchValue: false,
-    searchedMovie: [],
+    searchedMovie: null,
     toggleLoadingError: {
-      loading: true,
+      loading: false,
       error: false,
     },
   },

@@ -83,6 +83,7 @@ const Login = () => {
   const handleToggleSignin = () => {
     setIsSignin(!isSignin);
   };
+
   return (
     <div>
       <div className="absolute z-10">
@@ -91,12 +92,12 @@ const Login = () => {
       <img
         src={NETFLIX_BANNER}
         alt="Background Image"
-        className="w-12/12 absolute"
+        className="w-12/12 absolute h-screen object-cover"
       />{" "}
       <form
         onSubmit={(e) => e.preventDefault()}
         action=""
-        className=" absolute mt-34 mx-auto left-0 right-0 bg-black text-white w-3/12 p-12 m-2 flex flex-col gap-y-5 bg-black/95"
+        className=" absolute mt-34- mt-[10%] mx-auto left-0 right-0 bg-black opacity-95 rounded-lg text-white w-96 p-12 m-2 flex flex-col gap-y-5 bg-black/95 max-sm:w-8/12 max-sm:mt-20  max-xs:w-full max-xs:mx-0 "
       >
         <h1 className="text-xl">{isSignin ? "Sign In" : "Sign Up"}</h1>
         {!isSignin && (
@@ -104,7 +105,7 @@ const Login = () => {
             ref={name}
             type="text"
             placeholder="Full Name"
-            className=" p-2 rounded-sm bg-gray-700"
+            className=" p-2 rounded-sm bg-gray-700 "
           />
         )}
         <input

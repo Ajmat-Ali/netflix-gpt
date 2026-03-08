@@ -11,7 +11,7 @@ export const MainContainer = () => {
   const { title, overview, id } = nowPlayingMovies[0];
 
   return (
-    <div>
+    <div className="max-sm:-mt-30">
       <VideoTitle title={title} overview={overview} />
       <VideoBackground id={id} />
     </div>

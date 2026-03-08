@@ -8,13 +8,12 @@ import { addSearcheMovie } from "../../redux/gptSlice";
 import { toggleLoadingError } from "../../redux/gptSlice";
 
 const GptSearchBar = () => {
+  const searchRef = useRef(null);
+
   const currentLanguage = useSelector(
     (store) => store.language.currentLanguage,
   );
 
-  // const toggleLoadingError = useSelector(
-  //   (store) => store.gpt.toggleLoadingError,
-  // );
   const dispatch = useDispatch();
 
   const [searchVal, setSearchVal] = useState("");
@@ -57,24 +56,28 @@ const GptSearchBar = () => {
 
   const handleSearchChange = (e) => {
     setSearchVal(e.target.value);
+    if (!searchRef.current.value) {
+      dispatch(addSearcheMovie(null));
+    }
   };
 
   const handleSearchClick = async () => {};
 
   return (
-    <div className="bg-black/80 backdrop-blur-md p-4 rounded-xl w-1/2 mx-auto shadow-lg">
+    <div className="bg-black/80 backdrop-blur-md p-4 rounded-xl w-1/2  mx-auto mt-10 shadow-lg max-md:w-8/12 max-sm:mt-50 max-sm:w-full max-sm:p-2">
       <div className="grid grid-cols-[1fr_auto] gap-3">
         <input
+          ref={searchRef}
           onChange={handleSearchChange}
           value={searchVal}
           type="text"
           placeholder={lang[currentLanguage].searchPlaceholder}
-          className="border border-gray-300 px-4 py-3 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-red-600"
+          className="border border-gray-300 px-4 py-3 rounded-lg bg-white focus:outline-none focus:ring-2 focus:ring-red-600 w-full"
         />
 
         <button
           onClick={handleSearchClick}
-          className="bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer"
+          className="bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-semibold transition cursor-pointer max-sm:text-sm max-sm:px-4 max-sm:py-0"
         >
           {lang[currentLanguage].searchButtonValue}
         </button>

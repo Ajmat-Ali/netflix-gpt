@@ -26,5 +26,7 @@
 - search movies by search box
 - use debounce function to search
 - dispay searched movies
+- Use Memoization for performance
+- make responsive for (Desktop, Tab, & Mobile) screen
 
 # Upcoming Features

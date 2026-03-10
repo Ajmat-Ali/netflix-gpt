@@ -1,4 +1,16 @@
-# netflix-gpt
+# Netflix-gpt (Movie App)
+
+## Live Demo
+
+https://ntflixgpt.netlify.app/
+
+## Screenshot
+
+![alt text](image-3.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
+
+## Features
 
 - Design Sign In / Sign Up Form
 - Setup Route
@@ -29,4 +41,30 @@
 - Use Memoization for performance
 - make responsive for (Desktop, Tab, & Mobile) screen
 
-# Upcoming Features
+## Tech Stack
+
+- React
+- Redux Toolkit
+- Tailwind CSS
+- Firebase Authentication
+- TMDB API
+
+## Installation
+
+1. Clone the repository
+   - git clone https://github.com/username/project-name.git
+
+2. Go to project folder
+   - cd project-name
+
+3. Install dependencies
+   - npm install
+
+4. Run the project
+   - npm run dev
+
+## Author
+
+Ajmat Ali
+
+GitHub: https://github.com/Ajmat-Ali
